@@ -1,10 +1,10 @@
-import 'package:commit_tracker/modules/commits_viewer/models/remote_commit.dart';
+import 'package:commit_tracker/modules/commits_viewer/models/remote_specific_commit.dart';
 
 class CommitModel {
   String message;
   String author;
   DateTime dateTime;
-  String changes;
+  Stats changes;
   String avatarUrl;
 
   CommitModel({
@@ -15,12 +15,12 @@ class CommitModel {
     required this.avatarUrl,
   });
 
-  factory CommitModel.fromRemote(RemoteCommit remoteCommit) {
+  factory CommitModel.fromRemote(RemoteSpecificCommit remoteCommit) {
     return CommitModel(
       message: remoteCommit.commit.message,
       author: remoteCommit.commit.author.name,
       dateTime: remoteCommit.commit.author.date,
-      changes: remoteCommit.commit.message,
+      changes: remoteCommit.stats,
       avatarUrl: remoteCommit.author.avatarUrl,
     );
   }
