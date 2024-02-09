@@ -1,4 +1,5 @@
-import 'package:commit_tracker/services/api_rest/github_api.dart';
+import 'package:commit_tracker/modules/commits_viewer/pages/commits_list.dart';
+import 'package:commit_tracker/shared/widgets/theme_switch.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Home'),
+          actions: const [ThemeSwitch()],
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Commit List'),
@@ -20,12 +22,7 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            GestureDetector(
-              child: Container(color: Colors.red),
-              onTap: () {
-                GitHubApi.getAllCommits();
-              },
-            ),
+            const SimpleStateMachine(),
             Container(color: Colors.green),
           ],
         ),
