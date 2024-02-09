@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            const SimpleStateMachine(),
+            const CommitsList(),
             Container(color: Colors.green),
           ],
         ),
