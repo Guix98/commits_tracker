@@ -1,4 +1,7 @@
+import 'package:commit_tracker/shared/controllers/theme_comtroller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:rive/rive.dart';
 
 class ThemeSwitch extends StatefulWidget {
@@ -10,6 +13,7 @@ class ThemeSwitch extends StatefulWidget {
 
 class _ThemeSwitchState extends State<ThemeSwitch> {
   SMIBool? _isDark;
+  final ThemeController themeController = Get.find();
 
   void _onRiveInit(Artboard artboard) {
     final controller =
@@ -17,11 +21,16 @@ class _ThemeSwitchState extends State<ThemeSwitch> {
     artboard.addController(controller!);
 
     _isDark = controller.findInput<bool>('isDark') as SMIBool;
+    bool isDarkMode = themeController.isDark;
+    _isDark?.change(isDarkMode);
   }
 
-  void _toggleTheme() {
-    print(_isDark);
-    _isDark?.change(false);
+  void _toggleTheme(BuildContext context) async {
+    bool isDark = themeController.isDark;
+
+    themeController.changeTheme(!isDark);
+
+    _isDark?.change(!isDark);
   }
 
   @override
@@ -30,7 +39,9 @@ class _ThemeSwitchState extends State<ThemeSwitch> {
       height: 50,
       width: 100,
       child: GestureDetector(
-        onTap: _toggleTheme,
+        onTap: () {
+          _toggleTheme(context);
+        },
         child: RiveAnimation.asset(
           'assets/animations/dark_light_switch.riv',
           fit: BoxFit.cover,
