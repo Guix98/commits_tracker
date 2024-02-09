@@ -1,3 +1,4 @@
+import 'package:commit_tracker/services/api_rest/github_api.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,12 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Container(color: Colors.red),
+            GestureDetector(
+              child: Container(color: Colors.red),
+              onTap: () {
+                GitHubApi.getAllCommits();
+              },
+            ),
             Container(color: Colors.green),
           ],
         ),
