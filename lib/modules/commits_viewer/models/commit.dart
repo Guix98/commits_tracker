@@ -1,4 +1,4 @@
-import 'package:commit_tracker/modules/commits_viewer/models/remote_specific_commit.dart';
+import 'package:commit_tracker/services/schema/remote_specific_commit.dart';
 
 class CommitModel {
   String message;

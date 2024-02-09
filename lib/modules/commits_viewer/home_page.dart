@@ -5,8 +5,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Commit List'),
+              Tab(text: 'Timeline'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Container(color: Colors.red),
+            Container(color: Colors.green),
+          ],
+        ),
+      ),
     );
   }
 }
